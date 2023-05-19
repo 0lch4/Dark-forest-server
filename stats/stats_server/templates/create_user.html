@@ -1,14 +1,19 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <title>Tworzenie użytkownika</title>
+    <title>Create Account</title>
 </head>
 <body>
-    <h1>Tworzenie użytkownika</h1>
+    <h1>Register</h1>
     <form method="post">
         {% csrf_token %}
-        {{ form.as_p }}
-        <button type="submit">Utwórz użytkownika</button>
+        <label for="username">Username:</label>
+        <input type="text" id="username" name="username">
+        <br>
+        <label for="password">Password:</label>
+        <input type="password" id="password" name="password">
+        <br>
+        <button type="submit">Create account</button>
     </form>
 </body>
 </html>
