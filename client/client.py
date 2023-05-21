@@ -21,7 +21,7 @@ def create_user(username, password):
     if response.status_code == 200:
         print('Account created successfully')
     else:
-        print(f'Błąd {response.status_code} skontaktuj się z administratorem https://github.com/0lch4')
+        print(f'Error {response.status_code} pleas contact to administrator https://github.com/0lch4')
         
         
 def login_user(username, password):
@@ -45,6 +45,30 @@ def login_user(username, password):
     else:
         print(f'Error {response.status_code} pleas contact to administrator https://github.com/0lch4')
         
+def update(username, new_score):
+    update_stats_url = 'http://127.0.0.1:8000/stats/modify'
+    data = {
+        'username': username,
+        'best_score': new_score,
+    }
+
+    response = requests.post(update_stats_url, data=data)
+    if response.status_code == 200:
+        print('Stats have been updated')
+    else:
+        print('Failed to update stats')
+        print(response.status_code)
+
+def show():
+    show_stats_url = 'http://127.0.0.1:8000/stats/show'
+    response = requests.get(show_stats_url)
+    if response.status_code == 200:
+        serialized_stats = response.json()
+        print(serialized_stats)
+    else:
+        print('Failed to show stats')
+        print(response.status_code)
+
 
 def register():
     username = input('Type your username: ')
@@ -58,7 +82,9 @@ def login():
 
 def main():
     #register()
-    login()
+    #login()
+    update('janek','5')
+    show()
     
 
 if __name__ == '__main__':
