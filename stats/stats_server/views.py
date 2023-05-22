@@ -9,6 +9,7 @@ from .models import Stats
 from django.core import serializers
 from django.http import JsonResponse
     
+#creating user    
 @ensure_csrf_cookie
 def create_user(request):
     if request.method == 'POST':
@@ -25,6 +26,7 @@ def create_user(request):
 def register_success(request):
     return HttpResponse("Account created successfully")
 
+#logs the user
 @ensure_csrf_cookie
 def login_view(request):
     if request.method == 'POST':
@@ -40,8 +42,9 @@ def login_view(request):
         return render(request, 'login.html')
     
 def login_success(request):
-    return HttpResponse("you successfully logged in")
+    return HttpResponse("You successfully logged in")
 
+#update user stats
 @csrf_exempt
 def modify(request):
     if request.method == 'POST':
@@ -56,6 +59,7 @@ def modify(request):
     else:
         return HttpResponse("modify stats")
     
+#show users global stats    
 @csrf_exempt
 def show(request):
     if request.method == 'GET':
@@ -66,8 +70,3 @@ def show(request):
     else:
         return HttpResponse("show stats")
     
-def stats(request):
-    return HttpResponse("Users stats")
-
-def main(request):
-    return HttpResponse("main site")
