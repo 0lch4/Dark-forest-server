@@ -16,6 +16,8 @@ def create_user(request):
     if request.method == 'POST':
         username = request.POST['username']
         password = request.POST['password']
+        if User.objects.filter(username=username).exists():
+            return redirect('register_fail')
         user = User.objects.create_user(username=username, password=password)
         if user is not None:
             return redirect('register_success')
@@ -26,6 +28,9 @@ def create_user(request):
 
 def register_success(request):
     return HttpResponse("Account created successfully")
+
+def register_fail(request):
+    return HttpResponse("Account created failed")
 
 #logs the user
 @ensure_csrf_cookie
@@ -38,12 +43,15 @@ def login_view(request):
             login(request, user)
             return redirect('login_success')
         else:
-            return redirect('login')
+            return redirect('login_fail')
     else:
         return render(request, 'login.html')
     
 def login_success(request):
     return HttpResponse("You successfully logged in")
+
+def login_fail(request):
+    return HttpResponse("You not logged in")
 
 #update user best score
 @csrf_exempt
