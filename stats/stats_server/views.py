@@ -88,15 +88,16 @@ def modify_stats(request):
 
         stat, created = Stats.objects.get_or_create(username=username)
         username = User.objects.get(username=username)
-        stat.update(all_levels=all_levels)
-        stat.update(all_gold=all_gold)
-        stat.update(enemies_killed=enemies_killed)
-        stat.update(destroyed_obstacles=destroyed_obstacles)
-        stat.update(bosses_killed=bosses_killed)
-        stat.update(devils_killed=devils_killed)
-        stat.update(fasts_killed=fasts_killed)
-        stat.update(mutants_killed=mutants_killed)
-        stat.update(ghosts_killed=ghosts_killed)
+        stat.update(all_levels=all_levels,
+                    all_gold=all_gold,
+                    enemies_killed=enemies_killed,
+                    destroyed_obstacles=destroyed_obstacles,
+                    bosses_killed=bosses_killed,
+                    devils_killed=devils_killed,
+                    fasts_killed=fasts_killed,
+                    mutants_killed=mutants_killed,
+                    ghosts_killed=ghosts_killed,
+                    )
         
         return HttpResponse("Success")
     else:
