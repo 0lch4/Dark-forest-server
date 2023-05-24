@@ -10,15 +10,17 @@ MySQL server is required (I use mariadb)
 
 Install libs: pip install -r requirements.txt
 
-create .env like .env.example to configure server 
+create .env like .env.example to configure server
+
+Qwizi create Docker-compose for this server and hosting server<3
+
+In main folder type docker-compose up to run it
 
 In main django folder type in cmd:
 
 python manage.py make migrations
 
 python manage.py migrate
-
-Qwizi create Docker-compose for this server
 
 To run type:
 
