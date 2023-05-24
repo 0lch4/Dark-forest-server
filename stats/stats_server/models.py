@@ -29,7 +29,7 @@ class Stats(models.Model):
     objects = models.Manager()
     
     class Meta:
-        ordering = ['username']
+        ordering = ['all_levels']
         db_table = 'Stats'
     
     def update(self,all_levels,all_gold,enemies_killed,destroyed_obstacles,
