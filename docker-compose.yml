@@ -1,0 +1,45 @@
+version: "3.7"
+services:
+  db:
+    image: mysql:5.7
+    restart: always
+    environment:
+      MYSQL_DATABASE: 'db'
+      MYSQL_USER: 'user'
+      MYSQL_ALLOW_EMPTY_PASSWORD: 'yes'
+    expose:
+      # Opens port 3306 on the container
+      - '3306'
+      # Where our data will be persisted
+    volumes:
+      - my-db:/var/lib/mysql
+    networks:
+      - dark-forest
+  stats:
+    build:
+        context: ./stats
+        dockerfile: Dockerfile
+    command: gunicorn stats.wsgi:application --bind 0.0.0.0:3000
+    volumes:
+        - ./stats:/app
+    restart: always
+    ports:
+        - 3000:3000
+    environment:
+      - NAME=db
+      - USER=root
+      - PASSWORD=
+      - HOST=db
+      - PORT=3306
+      - SECRET_KEY=secret
+    networks:
+      - dark-forest
+    depends_on:
+      - db
+
+volumes:
+  my-db:
+
+networks:
+  dark-forest:
+
