@@ -18,6 +18,8 @@ python manage.py make migrations
 
 python manage.py migrate
 
+Qwizi create Docker-compose for this server
+
 To run type:
 
 python manage.py runserver
