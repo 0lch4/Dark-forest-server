@@ -1,7 +1,6 @@
 from django.http import HttpResponse
 from django.contrib.auth.forms import UserCreationForm
 from django.shortcuts import render, redirect
-from django.views.decorators.csrf import ensure_csrf_cookie
 from django.contrib.auth import authenticate, login
 from django.contrib.auth.models import User
 from django.views.decorators.csrf import csrf_exempt
@@ -9,35 +8,37 @@ from .models import Best_score
 from .models import Stats
 from django.core import serializers
 from django.http import JsonResponse
+from rest_framework.decorators import api_view
+from rest_framework.response import Response
     
 #creating user    
-@ensure_csrf_cookie
+@api_view(['POST'])
 def create_user(request):
     if request.method == 'POST':
-        username = request.POST['username']
-        password = request.POST['password']
+        username = request.data.get('username')
+        password = request.data.get('password')
         if User.objects.filter(username=username).exists():
             return redirect('register_fail')
         user = User.objects.create_user(username=username, password=password)
         if user is not None:
             return redirect('register_success')
+        else:
+            form = UserCreationForm()
     else:
-        form = UserCreationForm()
-
-    return render(request, 'create_user.html', {'form': form})
+        return Response({'error': 'Invalid request.'}, status=400)
 
 def register_success(request):
     return HttpResponse("Account created successfully")
 
 def register_fail(request):
-    return HttpResponse("Account created failed")
+    return HttpResponse("Account creation failed")
 
-#logs the user
-@ensure_csrf_cookie
+# Logs the user
+@api_view(['POST'])
 def login_view(request):
     if request.method == 'POST':
-        username = request.POST['username']
-        password = request.POST['password']
+        username = request.data.get('username')
+        password = request.data.get('password')
         user = authenticate(request, username=username, password=password)
         if user is not None:
             login(request, user)
@@ -45,13 +46,13 @@ def login_view(request):
         else:
             return redirect('login_fail')
     else:
-        return render(request, 'login.html')
-    
+        return Response({'error': 'Invalid request method.'}, status=400)
+
 def login_success(request):
     return HttpResponse("You successfully logged in")
 
 def login_fail(request):
-    return HttpResponse("You not logged in")
+    return HttpResponse("You are not logged in")
 
 #update user best score
 @csrf_exempt
