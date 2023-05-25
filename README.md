@@ -4,6 +4,10 @@
 
 Django Server for Dark Forest game, integrate with Dark Forest client
 
+This server is already running in internet, in this branch I set values for localhost.
+
+To connect to server use Dark Forest client
+
 Now you can create account,login to account,show globals scores and stats.
 
 MySQL server is required (I use mariadb)
@@ -12,9 +16,9 @@ Install libs: pip install -r requirements.txt
 
 create .env like .env.example to configure server
 
-Qwizi create Docker-compose for this server and hosting server<3
+Qwizi create Docker-compose for this server
 
-In main folder type docker-compose up to run it
+In main folder type 'docker-compose up' to run it
 
 In main django folder type in cmd:
 
