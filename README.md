@@ -42,11 +42,10 @@ In Settings I configure app for this project
 
 In urls I add path to app
 
-in main django folder is a folder named stats_server, this is a app
+in main django folder is a folder named stats_server, this is an app
 
 In migrations i have my database migrations
 
-In templates folder i have templates for login and register because I use csrf
 
 In Test folder i have unit tests
 
