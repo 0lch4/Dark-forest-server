@@ -1,6 +1,6 @@
 from django.http import HttpResponse
 from django.contrib.auth.forms import UserCreationForm
-from django.shortcuts import render, redirect
+from django.shortcuts import redirect
 from django.contrib.auth import authenticate, login
 from django.contrib.auth.models import User
 from django.views.decorators.csrf import csrf_exempt
@@ -10,6 +10,7 @@ from django.core import serializers
 from django.http import JsonResponse
 from rest_framework.decorators import api_view
 from rest_framework.response import Response
+from django.contrib.auth.decorators import login_required
     
 #creating user    
 @api_view(['POST'])
@@ -26,7 +27,8 @@ def create_user(request):
             form = UserCreationForm()
     else:
         return Response({'error': 'Invalid request.'}, status=400)
-
+    
+@login_required
 def register_success(request):
     return HttpResponse("Account created successfully")
 
@@ -48,6 +50,7 @@ def login_view(request):
     else:
         return Response({'error': 'Invalid request method.'}, status=400)
 
+@login_required
 def login_success(request):
     return HttpResponse("You successfully logged in")
 
@@ -55,7 +58,7 @@ def login_fail(request):
     return HttpResponse("You are not logged in")
 
 #update user best score
-@csrf_exempt
+@login_required
 def modify_best_score(request):
     if request.method == 'POST':
         username = request.POST.get('username')
@@ -70,7 +73,7 @@ def modify_best_score(request):
         return HttpResponse("modify stats")
     
 #show users global best scores    
-@csrf_exempt
+@login_required
 def show_best_score(request):
     if request.method == 'GET':
         all_best_scores = Best_score.objects.all()
@@ -81,7 +84,7 @@ def show_best_score(request):
         return HttpResponse("show stats")
     
 #modify users global stats
-@csrf_exempt
+@login_required
 def modify_stats(request):
     if request.method == 'POST':
         username = request.POST.get('username')
@@ -113,7 +116,7 @@ def modify_stats(request):
         return HttpResponse("modify stats")
 
 #show users global stats 
-@csrf_exempt
+@login_required
 def show_stats(request):
     if request.method == 'GET':
         all_stats = Stats.objects.all()
