@@ -3,14 +3,14 @@ from django.contrib.auth.forms import UserCreationForm
 from django.shortcuts import redirect
 from django.contrib.auth import authenticate, login
 from django.contrib.auth.models import User
-from django.views.decorators.csrf import csrf_exempt
 from .models import Best_score
 from .models import Stats
 from django.core import serializers
 from django.http import JsonResponse
-from rest_framework.decorators import api_view
+from rest_framework.decorators import api_view, permission_classes
 from rest_framework.response import Response
 from django.contrib.auth.decorators import login_required
+from rest_framework.permissions import IsAuthenticated
     
 #creating user    
 @api_view(['POST'])
@@ -28,10 +28,11 @@ def create_user(request):
     else:
         return Response({'error': 'Invalid request.'}, status=400)
     
-@login_required
+@api_view(['GET'])
 def register_success(request):
     return HttpResponse("Account created successfully")
 
+@api_view(['GET'])
 def register_fail(request):
     return HttpResponse("Account creation failed")
 
@@ -50,15 +51,19 @@ def login_view(request):
     else:
         return Response({'error': 'Invalid request method.'}, status=400)
 
+@api_view(['GET'])
 @login_required
 def login_success(request):
     return HttpResponse("You successfully logged in")
 
+@api_view(['GET'])
 def login_fail(request):
     return HttpResponse("You are not logged in")
 
 #update user best score
+@api_view(['POST'])
 @login_required
+@permission_classes([IsAuthenticated])
 def modify_best_score(request):
     if request.method == 'POST':
         username = request.POST.get('username')
@@ -73,6 +78,7 @@ def modify_best_score(request):
         return HttpResponse("modify stats")
     
 #show users global best scores    
+@api_view(['GET'])
 @login_required
 def show_best_score(request):
     if request.method == 'GET':
@@ -84,7 +90,9 @@ def show_best_score(request):
         return HttpResponse("show stats")
     
 #modify users global stats
+@api_view(['POST'])
 @login_required
+@permission_classes([IsAuthenticated])
 def modify_stats(request):
     if request.method == 'POST':
         username = request.POST.get('username')
@@ -116,6 +124,7 @@ def modify_stats(request):
         return HttpResponse("modify stats")
 
 #show users global stats 
+@api_view(['GET'])
 @login_required
 def show_stats(request):
     if request.method == 'GET':
