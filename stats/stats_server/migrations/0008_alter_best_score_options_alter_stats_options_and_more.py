@@ -4,26 +4,25 @@ from django.db import migrations
 
 
 class Migration(migrations.Migration):
-
     dependencies = [
-        ('stats_server', '0007_alter_stats_table'),
+        ("stats_server", "0007_alter_stats_table"),
     ]
 
     operations = [
         migrations.AlterModelOptions(
-            name='best_score',
-            options={'ordering': ['best_score']},
+            name="best_score",
+            options={"ordering": ["best_score"]},
         ),
         migrations.AlterModelOptions(
-            name='stats',
-            options={'ordering': ['username']},
+            name="stats",
+            options={"ordering": ["username"]},
         ),
         migrations.AlterModelTable(
-            name='best_score',
-            table='Best_score',
+            name="best_score",
+            table="Best_score",
         ),
         migrations.AlterModelTable(
-            name='stats',
-            table='Stats',
+            name="stats",
+            table="Stats",
         ),
     ]

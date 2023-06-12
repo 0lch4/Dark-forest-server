@@ -4,14 +4,13 @@ from django.db import migrations
 
 
 class Migration(migrations.Migration):
-
     dependencies = [
-        ('stats_server', '0008_alter_best_score_options_alter_stats_options_and_more'),
+        ("stats_server", "0008_alter_best_score_options_alter_stats_options_and_more"),
     ]
 
     operations = [
         migrations.AlterModelOptions(
-            name='stats',
-            options={'ordering': ['all_levels']},
+            name="stats",
+            options={"ordering": ["all_levels"]},
         ),
     ]

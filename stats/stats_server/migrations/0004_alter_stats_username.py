@@ -4,15 +4,14 @@ from django.db import migrations, models
 
 
 class Migration(migrations.Migration):
-
     dependencies = [
-        ('stats_server', '0003_rename_user_stats_username'),
+        ("stats_server", "0003_rename_user_stats_username"),
     ]
 
     operations = [
         migrations.AlterField(
-            model_name='stats',
-            name='username',
+            model_name="stats",
+            name="username",
             field=models.CharField(max_length=200),
         ),
     ]

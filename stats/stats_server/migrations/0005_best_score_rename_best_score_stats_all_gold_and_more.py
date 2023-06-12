@@ -4,70 +4,77 @@ from django.db import migrations, models
 
 
 class Migration(migrations.Migration):
-
     dependencies = [
-        ('stats_server', '0004_alter_stats_username'),
+        ("stats_server", "0004_alter_stats_username"),
     ]
 
     operations = [
         migrations.CreateModel(
-            name='Best_score',
+            name="Best_score",
             fields=[
-                ('id', models.BigAutoField(auto_created=True, primary_key=True, serialize=False, verbose_name='ID')),
-                ('username', models.CharField(max_length=200)),
-                ('best_score', models.CharField(max_length=200)),
+                (
+                    "id",
+                    models.BigAutoField(
+                        auto_created=True,
+                        primary_key=True,
+                        serialize=False,
+                        verbose_name="ID",
+                    ),
+                ),
+                ("username", models.CharField(max_length=200)),
+                ("best_score", models.CharField(max_length=200)),
             ],
         ),
         migrations.RenameField(
-            model_name='stats',
-            old_name='best_score',
-            new_name='all_gold',
+            model_name="stats",
+            old_name="best_score",
+            new_name="all_gold",
         ),
         migrations.AddField(
-            model_name='stats',
-            name='all_levels',
+            model_name="stats",
+            name="all_levels",
             field=models.CharField(default=None, max_length=200),
             preserve_default=False,
         ),
         migrations.AddField(
-            model_name='stats',
-            name='bosses_killed',
+            model_name="stats",
+            name="bosses_killed",
             field=models.CharField(default=None, max_length=200),
             preserve_default=False,
         ),
         migrations.AddField(
-            model_name='stats',
-            name='destroyed_obstacles',
+            model_name="stats",
+            name="destroyed_obstacles",
             field=models.CharField(default=None, max_length=200),
             preserve_default=False,
         ),
         migrations.AddField(
-            model_name='stats',
-            name='devils_killed',
+            model_name="stats",
+            name="devils_killed",
             field=models.CharField(default=None, max_length=200),
             preserve_default=False,
         ),
         migrations.AddField(
-            model_name='stats',
-            name='enemies_killed',
+            model_name="stats",
+            name="enemies_killed",
             field=models.CharField(default=None, max_length=200),
             preserve_default=False,
         ),
         migrations.AddField(
-            model_name='stats',
-            name='fasts_killed',
+            model_name="stats",
+            name="fasts_killed",
             field=models.CharField(default=None, max_length=200),
             preserve_default=False,
         ),
         migrations.AddField(
-            model_name='stats',
-            name='ghosts_killed',
+            model_name="stats",
+            name="ghosts_killed",
             field=models.CharField(default=None, max_length=200),
             preserve_default=False,
         ),
         migrations.AddField(
-            model_name='stats',
-            name='mutants_killed',
+            model_name="stats",
+            name="mutants_killed",
             field=models.CharField(default=None, max_length=200),
             preserve_default=False,
         ),

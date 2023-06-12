@@ -4,18 +4,17 @@ from django.db import migrations
 
 
 class Migration(migrations.Migration):
-
     dependencies = [
-        ('stats_server', '0005_best_score_rename_best_score_stats_all_gold_and_more'),
+        ("stats_server", "0005_best_score_rename_best_score_stats_all_gold_and_more"),
     ]
 
     operations = [
         migrations.AlterModelOptions(
-            name='best_score',
-            options={'ordering': ['id']},
+            name="best_score",
+            options={"ordering": ["id"]},
         ),
         migrations.AlterModelOptions(
-            name='stats',
-            options={'ordering': ['id']},
+            name="stats",
+            options={"ordering": ["id"]},
         ),
     ]

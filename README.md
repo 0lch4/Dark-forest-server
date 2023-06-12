@@ -1,58 +1,68 @@
-# Dark_forest-server
+# Dark Forest Server
 
-![GitHub forks](https://img.shields.io/badge/Version-1.1-red)
+![GitHub forks](https://img.shields.io/badge/Version-1.1.1-red)
+
+# Description
 
 Django Server for Dark Forest game, integrate with Dark Forest client
 
-This server is already running in internet, in this branch I set values for localhost.
+This server is already running in internet, here I set values for localhost. To connect to server use [Dark Forest client on localhost values](https://github.com/0lch4/Dark_forest_client/blob/version_for_localhost/README.md)
 
-To connect to server use Dark Forest client
+## License
 
-Now you can create account,login to account,show globals scores and stats.
+Application is licensed under the MIT License.
 
-MySQL server is required (I use mariadb)
+# Instalation
 
-Install libs: pip install -r requirements.txt
+[MySQL](https://dev.mysql.com/downloads/mysql/) server is required.
 
-create .env like .env.example to configure server
+## Copying the repository
 
-Qwizi create Docker-compose for this server
+```
+git clone https://github.com/0lch4/Dark-forest-server.git
+```
 
-In main folder type 'docker-compose up' to run it
+## Installing liblaries
 
-In main django folder type in cmd:
+You have to use poetry to install liblaries:
 
-python manage.py make migrations
+```
+pip install poetry
+```
 
-python manage.py migrate
+In next step enter in main project location:
 
-To run type:
+```
+poetry install
+```
 
+## .env file
+
+You have to create `.env` like `.env.example`
+
+# Usage
+
+When all dependencies are met, enter in the main django location:
+
+```
 python manage.py runserver
+```
 
-Description:
+Server is avilable on:
 
-Stats is a main django folder
+```
+http://127.0.0.1:8000/stats/
+```
+## Running in Docker
 
-I prefer pytest so I configure django from pytest
+Qwizi create docker-compose to this server
 
-In main django folder is another stats folder, this is a server
+For build container enter in main location:
+```
+docker-compose up --build
+```
+Server is avilable on:
 
-In Settings I configure app for this project
-
-In urls I add path to app
-
-in main django folder is a folder named stats_server, this is an app
-
-In migrations i have my database migrations
-
-
-In Test folder i have unit tests
-
-In admin i create admin panel to my models
-
-In models i define data models to database, stats and best scores are in apart tables
-
-In urls i have paths from views
-
-In views i have my endpoints to communicate with client
+```
+http://localhost:3000/
+```

@@ -1,0 +1,28 @@
+[tool.poetry]
+name = "dark-forest-server"
+version = "1.1.1"
+description = "Django Server for Dark Forest game, integrate with Dark Forest client"
+authors = ["0lch4 <127250399+0lch4@users.noreply.github.com>"]
+license = "MIT"
+readme = "README.md"
+packages = [{include = "dark_forest_server"}]
+
+[tool.poetry.dependencies]
+python = "^3.11"
+Django = "^4.2.1"
+mysqlclient = "^2.1.1"
+requests = "^2.30.0"
+djangorestframework = "^3.14.0"
+beautifulsoup4 = "^4.12.2"
+django-crispy-forms = "^2.0"
+django-bootstrap4 = "^23.1"
+python-decouple = "^3.8"
+python-dotenv = "^1.0.0"
+
+[tool.poetry.group.dev.dependencies]
+pytest = "^7.3.1"
+pytest-django = "^4.5.2"
+
+[build-system]
+requires = ["poetry-core"]
+build-backend = "poetry.core.masonry.api"
