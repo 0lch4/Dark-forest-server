@@ -1,6 +1,4 @@
-# Dark Forest Server
-
-![GitHub forks](https://img.shields.io/badge/Version-1.1.1-red)
+# Dark Forest Server ![GitHub forks](https://img.shields.io/badge/Version-1.0.0-red)
 
 # Description
 
