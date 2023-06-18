@@ -34,6 +34,12 @@ In next step enter in main project location:
 poetry install
 ```
 
+Finally, activate your environment:
+
+```
+poetry shell
+```
+
 ## .env file
 
 You have to create `.env` like `.env.example`
