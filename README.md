@@ -2,7 +2,7 @@
 
 # Description
 
-Django Server for Dark Forest game, integrate with Dark Forest client
+Django Server for Dark Forest game, connected with Dark Forest client
 
 This server is already running in internet, here I set values for localhost. To connect to server use [Dark Forest client on localhost values](https://github.com/0lch4/Dark_forest_client/blob/version_for_localhost/README.md)
 
